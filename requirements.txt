@@ -1,0 +1,5 @@
+langchain==0.1.16
+langchain_pinecone==0.1.0
+setuptools==67.6.1
+tqdm==4.64.0
+-e .
