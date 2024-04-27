@@ -11,3 +11,17 @@ from langchain.llms import CTransformers
 import os
 from tqdm.autonotebook import tqdm
 import sys
+
+def load_data(data_path):
+    loader = DirectoryLoader(data_path,glob='*.pdf',loader_cls=PyPDFLoader)
+    data = loader.load()
+    return data
+
+def text_split(data):
+    splitter = RecursiveCharacterTextSplitter(chunk_size = 500, chunk_overlap= 20)
+    text_chunks = splitter.split_documents(data)
+    return text_chunks
+
+def download_huggingface_embedding():
+    embeddings = HuggingFaceEmbeddings(model_name = 'sentence-transformers/all-MiniLM-L6-v2')
+    return embeddings
